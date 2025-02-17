@@ -9,18 +9,14 @@ const SignUpPage = () => {
     const [password, setPassword] = useState("");
     const [confirmPassword, setConfirmPassword] = useState("");
     const [otp, setOtp] = useState("");
-    const [loading, setLoading] = useState(false);
-    const [message, setMessage] = useState("");
 
     const handleRegister = async (e) => {
         e.preventDefault();
 
         if (password !== confirmPassword) {
-            setMessage("Passwords do not match!");
             return;
         }
 
-        setLoading(true);
         try {
             const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/register`, {
                 method: "POST",
@@ -31,24 +27,13 @@ const SignUpPage = () => {
             const respObj = await resp.json();
             if (respObj.status === "Success") {
                 navigate("/login");
-<<<<<<< HEAD
-            } else {
-                setMessage(`Error in Registration: ${respObj.message}`);
             }
         } catch (err) {
-            setMessage("Error in registration. Please try again.");
-=======
-        }else{
-                alert(`Error is Registration ${respObj.message}`);
->>>>>>> c98739dd7f6ddb69a0bc0d0631d4f623d574974f
         }
-        setLoading(false);
     };
 
     const handleSendOtp = async (e) => {
         e.preventDefault();
-        setMessage("");
-        setLoading(true);
         const enteredEmail = e.target.email.value;
         const enteredFullName = e.target.fullName.value;
 
@@ -64,20 +49,14 @@ const SignUpPage = () => {
                 setEmail(enteredEmail);
                 setFullName(enteredFullName);
                 setIsOtpSent(true);
-                setMessage("OTP sent successfully!");
-            } else {
-                setMessage(respObj.message);
             }
         } catch (error) {
-            setMessage("Error sending OTP. Please try again.");
         }
-        setLoading(false);
     };
 
     return (
         <div>
             <h2>{isOtpSent ? "Complete Registration" : "Sign Up"}</h2>
-            {message && <p style={{ color: "red" }}>{message}</p>}
 
             {isOtpSent ? (
                 <form onSubmit={handleRegister}>
@@ -96,7 +75,7 @@ const SignUpPage = () => {
                     <label>Confirm Password:</label>
                     <input type="password" placeholder="Confirm Password" value={confirmPassword} onChange={(e) => setConfirmPassword(e.target.value)} required />
 
-                    <button type="submit" disabled={loading}>{loading ? "Registering..." : "Register"}</button>
+                    <button type="submit">Register</button>
                 </form>
             ) : (
                 <form onSubmit={handleSendOtp}>
@@ -106,7 +85,7 @@ const SignUpPage = () => {
                     <label>Email:</label>
                     <input type="email" placeholder="Email" name="email" required />
 
-                    <button type="submit" disabled={loading}>{loading ? "Sending OTP..." : "Send OTP"}</button>
+                    <button type="submit">Send OTP</button>
                 </form>
             )}
         </div>

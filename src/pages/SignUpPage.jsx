@@ -20,7 +20,7 @@ const SignUpPage = () => {
         try {
             const resp = await fetch(`${import.meta.env.VITE_BACKEND_URL}/users/register`, {
                 method: "POST",
-                body: JSON.stringify({ email, fullName, otp, password }),
+                body: JSON.stringify({ email, fullName, otp: e.target.otp.value , password: e.target.password.value }),
                 headers: { "Content-Type": "application/json" },
             });
 
@@ -28,7 +28,8 @@ const SignUpPage = () => {
             if (respObj.status === "Success") {
                 navigate("/login");
             }
-        } catch (err) {
+        }catch (err) {
+            setMessage("Error in registration. Please try again.");
         }
     };
 

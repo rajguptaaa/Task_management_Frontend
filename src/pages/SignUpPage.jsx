@@ -68,16 +68,23 @@ const SignUpPage = () => {
         <div><br/>
             {isOtpSent ? (
                 <form onSubmit={handleRegister}>
+                <label>Enter Email: </label>
                     <input type="text" value={email} readOnly />
+                <label>Enter Full Name: </label>
                     <input type="text" value={fullName} readOnly />
+                <label>Enter OTP: </label>
                     <input type="text" placeholder="OTP" name="otp" required />
+                <label>Enter Password: </label>
                     <input type="password" placeholder="Password" name="password" required />
+                <label>Enter Confirm Password: </label>
                     <input type="password" placeholder="Confirm Password" name="confirmPassword" required />
                     <button type="submit">Register</button>
                 </form>
             ) : (
                 <form onSubmit={handleSendOtp}>
+                    <label>Enter Full Name: </label>
                     <input type="text" placeholder="Full Name" name="fullName" required />
+                    <label>Enter Email: </label>
                     <input type="email" placeholder="Email" name="email" required />
                     <button type="submit">Send OTP</button>
                 </form>

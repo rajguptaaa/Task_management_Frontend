@@ -34,7 +34,7 @@ const SignUpPage = () => {
         if(respObj.status==="Success"){
                 navigate("/login");
         }else{
-
+                alert(`Error is Registration ${respObj.message}`);
         }
     };
 

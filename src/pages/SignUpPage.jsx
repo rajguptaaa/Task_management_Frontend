@@ -36,8 +36,6 @@ const SignUpPage = () => {
             }
         } catch (err) {
             setMessage("Error in registration. Please try again.");
-        }else{
-                alert(`Error is Registration ${respObj.message}`);
         }
         setLoading(false);
     };

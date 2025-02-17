@@ -31,11 +31,16 @@ const SignUpPage = () => {
             const respObj = await resp.json();
             if (respObj.status === "Success") {
                 navigate("/login");
+<<<<<<< HEAD
             } else {
                 setMessage(`Error in Registration: ${respObj.message}`);
             }
         } catch (err) {
             setMessage("Error in registration. Please try again.");
+=======
+        }else{
+                alert(`Error is Registration ${respObj.message}`);
+>>>>>>> c98739dd7f6ddb69a0bc0d0631d4f623d574974f
         }
         setLoading(false);
     };

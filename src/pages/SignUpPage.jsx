@@ -1,7 +1,7 @@
 import React from "react";
 import { useState } from "react";
 import { Link, useNavigate } from "react-router";
-
+import '../assets/SignUpPage.css';
 const SignUp = () => {
   const [isOtpSent, setIsOtpSent] = useState(false);
   const [email, setEmail] = useState(false);
@@ -135,7 +135,7 @@ const SignUp = () => {
             />
             <button className="signup-button">Send OTP</button>
             <Link to="/login" className="linktag">
-              <span className="span">Already have an Account? </span> Login
+              <p style={{'color':'black'}}>Already have an Account? <span style={{'color':"blue"}}>Login </span> </p>
             </Link>
           </form>
         </div>
